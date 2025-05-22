@@ -1026,14 +1026,19 @@ document.addEventListener('DOMContentLoaded', function() {
     var music = document.getElementById('backgroundMusic');
     var musicControl = document.getElementById('musicControl');
     
+    // Sayfa üzerine tıklandığında müziği başlat
+    document.body.addEventListener('click', function(e) {
+        if (e.target !== musicControl && !musicControl.contains(e.target)) {
+            music.play();
+            music.muted = false;
+            musicControl.querySelector('i').className = 'fas fa-volume-up';
+        }
+    });
+
     musicControl.addEventListener('click', function(e) {
         e.stopPropagation();
         toggleMusic();
     });
-    
-    // Sayfa yüklendiğinde veya herhangi bir yere tıklandığında müziği başlat
-    music.play();
-    music.muted = false;
 });
 </script>
 
